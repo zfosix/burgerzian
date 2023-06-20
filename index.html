@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Burgerzian</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="img/lb.jpeg" />
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+      :root {
+        --primary: #ffa559;
+        --bg: #080202;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        outline: none;
+        border: none;
+        text-decoration: none;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--bg);
+        color: #fff;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* navbar */
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.1rem 7%;
+        background-color: #000000;
+        border-bottom: 1px solid #513c28;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 9999;
+      }
+
+      .navbar .navbar-logo {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #fff;
+        font-style: sans-serif;
+      }
+
+      .navbar .navbar-logo span {
+        color: var(--primary);
+      }
+
+      .navbar .navbar-nav a {
+        color: #fff;
+        display: inline-block;
+        font-size: 1.2rem;
+        margin: 0 1rem;
+      }
+
+      .navbar .navbar-nav a:hover {
+        color: var(--primary);
+      }
+
+      .navbar .navbar-nav a::after {
+        content: "";
+        display: block;
+        padding-bottom: 0.5rem;
+        border-bottom: 0.1rem solid var(--primary);
+        transform: scaleX(0);
+        transition: 0.2s linear;
+      }
+
+      .navbar .navbar-nav a:hover::after {
+        transform: scaleX(0.5);
+      }
+
+      .navbar .navbar-extra a {
+        color: #fff;
+        margin: 0 0.5rem;
+      }
+
+      .navbar .navbar-extra a:hover {
+        color: var(--primary);
+      }
+
+      #hamburger-menu {
+        display: none;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        background-image: url(img/aboutburger.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+      }
+
+      .hero::after {
+        content: "";
+        display: block;
+        position: absolute;
+        width: 100%;
+        height: 30%;
+        bottom: 0;
+        background: linear-gradient(
+          0deg,
+          rgba(1, 1, 3, 1) 8%,
+          rgba(255, 255, 255, 0) 50%
+        );
+      }
+
+      .hero .content {
+        padding: 1.4rem 7%;
+        max-width: 60rem;
+      }
+
+      .hero .content h2 {
+        font-size: 2rem;
+        color: #454545;
+        text-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
+      }
+
+      .hero .content h1 {
+        font-size: 5rem;
+        color: var(--bg);
+        text-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
+        line-height: 1.2;
+      }
+
+      .hero .content h1 span {
+        color: var(--primary);
+      }
+
+      .hero .content p {
+        font-size: 1.6rem;
+        margin-top: 1rem;
+        line-height: 1.4;
+        font-weight: 100;
+        text-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
+        mix-blend-mode: difference;
+      }
+
+      .hero .content .cta {
+        margin-top: 1rem;
+        display: inline-block;
+        padding: 1rem 3rem;
+        font-size: 1.4rem;
+        color: #fff;
+        background-color: var(--primary);
+        border-radius: 0.5rem;
+        box-shadow: 1px 1px 3px rgba(1, 1, 3, 0.5);
+      }
+
+      /* About Section */
+      .about,
+      .menu {
+        padding: 10rem 7% 1.4rem;
+      }
+
+      .about h2,
+      .menu h2,
+      .contact h2 {
+        text-align: center;
+        font-size: 2.6rem;
+        margin-bottom: 3rem;
+      }
+
+      .about h2 span,
+      .menu h2 span,
+      .contact h2 span {
+        color: var(--primary);
+      }
+
+      .about .row {
+        display: flex;
+      }
+
+      .about .row .about-img {
+        flex: 1 1 45rem;
+      }
+
+      .about .row .about-img img {
+        width: 90%;
+        border-radius: 5rem;
+      }
+
+      .about .row .content {
+        flex: 1 1 35rem;
+        padding: 0 1rem;
+      }
+
+      .about .row .content h3 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+      }
+
+      .about .row .content {
+        margin-bottom: 0.8rem;
+        font-size: 1.3rem;
+        font-weight: 100;
+        line-height: 1.6rem;
+      }
+
+      .abuot .row .content {
+        padding: 0;
+      }
+
+      .about .row .content h3 {
+        margin-top: 1rem;
+        font-size: 2rem;
+      }
+
+      .about .row .content p {
+        margin-bottom: 0.8rem;
+        font-size: 1.6rem;
+        font-weight: 100;
+        line-height: 1.6rem;
+      }
+
+      /* Menu Section */
+
+      .menu h2,
+      .contact h2 {
+        margin-bottom: 1rem;
+      }
+
+      .menu p,
+      .contact p {
+        text-align: center;
+        max-width: 30rem;
+        margin: auto;
+        font-weight: 100;
+        line-height: 1.6;
+      }
+
+      .menu .row {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 5rem;
+        justify-content: center;
+      }
+
+      .menu .row .menu-card {
+        text-align: center;
+        padding-bottom: 3rem;
+      }
+
+      .menu .row .menu-card img {
+        border-radius: 20%;
+        width: 80%;
+      }
+
+      .menu .row .menu-card .menu-card-tittle {
+        margin: 1rem auto 0.5rem;
+      }
+
+      .menu .btn {
+        margin-top: 1rem;
+        display: inline-block;
+        padding: 0.7rem 2rem;
+        font-size: 1rem;
+        color: var(--bg);
+        background-color: var(--primary);
+        cursor: pointer;
+        border-radius: 2rem;
+      }
+
+      .menu .btn1 {
+        font-weight: 1rem;
+        color: var(--bg);
+        font-size: 1.5rem;
+      }
+
+      /* tabel */
+      .tabel {
+        margin-left: 45%;
+      }
+
+      table {
+        display: flex;
+      }
+
+      /* tabel */
+
+      .contact h2 {
+        padding-top: 8rem;
+      }
+
+      .contact .row {
+        display: flex;
+        margin-top: 4rem;
+        /* background-color: #222; */
+        margin-left: 7rem;
+        margin-right: 7rem;
+        margin-bottom: 10rem;
+        border-radius: 3rem;
+
+        /* width: 90%; */
+        /* max-width: 400px; */
+        padding: 2rem 1rem;
+
+        border-radius: 1rem;
+        border: 1px solid transparent;
+
+        backdrop-filter: blur(1rem);
+        box-shadow: 1.3rem 1.3rem 1.3rem rgba(0, 0, 0, 0.5);
+
+        border-top-color: rgba(225, 225, 225, 0.1);
+        border-left-color: rgba(225, 225, 225, 0.1);
+        border-bottom-color: rgba(225, 225, 225, 0.1);
+        border-right-color: rgba(225, 225, 225, 0.1);
+      }
+
+      .contact .row .map {
+        flex: 1 1 45rem;
+        width: 100%;
+        object-fit: cover;
+        padding: 1rem;
+      }
+
+      .contact .row form {
+        flex: 1 1 45rem;
+        padding: 5rem 2rem;
+        text-align: center;
+      }
+
+      .contact .row form .input-group {
+        display: flex;
+        align-items: center;
+        margin-top: 1rem;
+        background-color: var(--bg);
+        border: 1px solid #eee;
+        padding-left: 2rem;
+        border-radius: 2rem;
+      }
+
+      .contact .row form .input-group input {
+        width: 100%;
+        padding: 2rem;
+        font-size: 1.7rem;
+        background: none;
+        color: #fff;
+      }
+
+      .contact .row form .btn {
+        margin-top: 3rem;
+        display: inline-block;
+        padding: 1rem 3rem;
+        font-size: 1.7rem;
+        color: #fff;
+        background-color: var(--primary);
+        cursor: pointer;
+        border-radius: 1.5rem;
+        box-shadow: 0 0.3rem 1rem rgba(0, 0, 0, 0/3);
+      }
+
+      .map {
+        margin-bottom: 5rem;
+      }
+
+      /* Footer */
+      footer {
+        background-color: var(--primary);
+        text-align: center;
+        padding: 1rem 0.5rem;
+        margin-top: 5rem;
+      }
+
+      footer .social {
+        padding: 1rem 0;
+      }
+
+      footer .social1 {
+        color: var(--bg);
+      }
+
+      footer .social a {
+        color: var(--bg);
+        margin: 1rem;
+      }
+
+      footer .social a:hover,
+      footer .links a:hover {
+        color: #fff;
+      }
+
+      footer .links {
+        margin-bottom: 1.4rem;
+      }
+
+      footer .links a {
+        color: var(--bg);
+        padding: 0.7rem 1rem;
+      }
+
+      footer .credit {
+        font-size: 0.8rem;
+      }
+
+      footer .credit a {
+        color: var(--bg);
+        font-weight: 700;
+      }
+
+      /* Media Queries */
+
+      /* Mobile phone */
+      @media (max-width: 450px) {
+        html {
+          font-size: 55%;
+        }
+      }
+
+      /* Laptop */
+      @media (max-width: 1366px) {
+        html {
+          font-size: 75%;
+        }
+      }
+
+      /* Tablet */
+      @media (max-width: 768px) {
+        html {
+          font-size: 62.5%;
+        }
+
+        #hamburger-menu {
+          display: inline-block;
+        }
+
+        .navbar .navbar-nav {
+          position: absolute;
+          top: 100%;
+          right: -100%;
+          background-color: var(--primary);
+          width: 30rem;
+          height: 100vh;
+          transition: 0.3s;
+        }
+
+        .navbar .navbar-nav.active {
+          right: 0;
+        }
+
+        .navbar .navbar-nav a {
+          color: var(--bg);
+          display: block;
+          margin: 1.5rem;
+          padding: 0.5rem;
+          font-size: 2rem;
+        }
+
+        .navbar .navbar-nav a::after {
+          transform-origin: 0 0;
+        }
+
+        .navbar .navbar-nav a:hover::after {
+          transform: scaleX(0.3);
+        }
+
+        .about .row {
+          flex-wrap: wrap;
+        }
+
+        .about .row .about-img img {
+          height: 24rem;
+          object-fit: cover;
+          object-position: center;
+        }
+
+        .about .row .content {
+          padding: 0;
+        }
+
+        .about .row .content h3 {
+          margin-top: 1rem;
+          font-size: 2rem;
+        }
+
+        .about .row .content p {
+          font-size: 1.6rem;
+        }
+
+        .menu p {
+          font-size: 1.2rem;
+        }
+
+        .contact .row {
+          flex-wrap: wrap;
+        }
+
+        .contact .row.map {
+          height: 30rem;
+        }
+
+        .contact .row form {
+          padding-top: 0;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- Navbar start -->
+    <nav class="navbar">
+      <a href="#" class="navbar-logo">Burger<span>Zianを</span></a>
+      <div class="navbar-nav">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#menu">Menu</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <div class="navbar-extra">
+        <a href="#" id="search"><i data-feather="search"></i></a>
+        <a href="#" id="shopping-cart"><i data-feather="shopping-cart"></i></a>
+        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+      </div>
+    </nav>
+    <!-- Navbar end -->
+
+    <!-- Hero Section start-->
+    <section class="hero" id="home">
+      <main class="content">
+        <h1>Makan Burger Yang Paling Enak Itu<span> Cuma Ada Disini</span></h1>
+        <h2>いらっしゃいませ</h2>
+        <p>
+          Mau makan burger yang udah pasti enak dan terjangkau? Cuma disini
+          tempatnya.
+        </p>
+        <a href="#" class="cta">Buy Now</a>
+      </main>
+    </section>
+    <!-- Hero Section end-->
+
+    <!-- About Section start -->
+    <section id="about" class="about">
+      <h2><span>About</span> Us</h2>
+      <div class="row">
+        <div class="about-img">
+          <img src="img/burger.jpeg" alt="" />
+        </div>
+        <div class="content">
+          <h3>Apa itu makananan burger?</h3>
+          <p>
+            Hamburger atau burger adalah sejenis roti berbentuk bundar yang
+            diiris dua, dan di tengahnya diisi dengan patty yang biasanya
+            diambil dari daging, kemudian sayur-sayuran berupa selada, tomat dan
+            bawang bombai.
+          </p>
+          <p>
+            Sebagai sausnya, hamburger diberi berbagai jenis saus seperti
+            mayones, saus tomat dan sambal, serta moster.
+          </p>
+        </div>
+      </div>
+    </section>
+    <!-- About Section end -->
+
+    <!-- Menu Section start -->
+    <section id="menu" class="menu">
+      <h2><span>Our</span> Menu</h2>
+      <p>
+        Kami menghidangkan berbagai macam-macam menu yang ada di foodstal kami,
+        anda bisa memilih salah satu menu yang paling enak disni.
+      </p>
+      <div class="row">
+        <div class="menu-card">
+          <img
+            src="img/menu/small burger.jpg"
+            alt="Espresso"
+            class="menu-card-img"
+          />
+          <h3 class="menu-card-tittle">- Smal Burger</h3>
+          <p class="menu-card-rpice">IDR 15k</p>
+          <button type="submit" class="btn">
+            <a class="btn1" href="1.html">Pesan</a>
+          </button>
+        </div>
+        <div class="menu-card">
+          <img
+            src="img/menu/burger king.jpg"
+            alt="Espresso"
+            class="menu-card-img"
+          />
+          <h3 class="menu-card-tittle">- Burger King</h3>
+          <p class="menu-card-rpice">IDR 20k</p>
+          <button type="submit" class="btn">
+            <a class="btn1" href="2.html">Pesan</a>
+          </button>
+        </div>
+        <div class="menu-card">
+          <img
+            src="img/menu/chess burger.jpg"
+            alt="Espresso"
+            class="menu-card-img"
+          />
+          <h3 class="menu-card-tittle">- Chess Burger</h3>
+          <p class="menu-card-rpice">IDR 20k</p>
+          <button type="submit" class="btn">
+            <a class="btn1" href="3.html">Pesan</a>
+          </button>
+        </div>
+        <div class="menu-card">
+          <img
+            src="img/menu/french fries.jpg"
+            alt="Espresso"
+            class="menu-card-img"
+          />
+          <h3 class="menu-card-tittle">- French Fries</h3>
+          <p class="menu-card-rpice">IDR 10k</p>
+          <button type="submit" class="btn">
+            <a class="btn1" href="4.html">Pesan</a>
+          </button>
+        </div>
+        <div class="menu-card">
+          <img src="img/menu/kebab.jpg" alt="Espresso" class="menu-card-img" />
+          <h3 class="menu-card-tittle">- Kebab</h3>
+          <p class="menu-card-rpice">IDR 12k</p>
+          <button type="submit" class="btn">
+            <a class="btn1" href="5.html">Pesan</a>
+          </button>
+        </div>
+        <div class="menu-card">
+          <img src="img/menu/pasta.jpg" alt="Espresso" class="menu-card-img" />
+          <h3 class="menu-card-tittle">- Pasta</h3>
+          <p class="menu-card-rpice">IDR 20k</p>
+          <button type="submit" class="btn">
+            <a class="btn1" href="6.html">Pesan</a>
+          </button>
+        </div>
+        <div class="menu-card">
+          <img
+            src="img/menu/medium pizza.jpg"
+            alt="Espresso"
+            class="menu-card-img"
+          />
+          <h3 class="menu-card-tittle">- Medium Pizza</h3>
+          <p class="menu-card-rpice">IDR 70k</p>
+          <button type="submit" class="btn">
+            <a class="btn1" href="7.html">Pesan</a>
+          </button>
+        </div>
+        <div class="menu-card">
+          <img
+            src="img/menu/pizza sayuran.jpg"
+            alt="Espresso"
+            class="menu-card-img"
+          />
+          <h3 class="menu-card-tittle">- Pizza Sayuran</h3>
+          <p class="menu-card-rpice">IDR 60k</p>
+          <button type="submit" class="btn">
+            <a class="btn1" href="8.html">Pesan</a>
+          </button>
+        </div>
+        <div class="menu-card">
+          <img
+            src="img/menu/ekpreso.jpg"
+            alt="Espresso"
+            class="menu-card-img"
+          />
+          <h3 class="menu-card-tittle">- Espresso</h3>
+          <p class="menu-card-rpice">IDR 15k</p>
+          <button type="submit" class="btn">
+            <a class="btn1" href="9.html">Pesan</a>
+          </button>
+        </div>
+        <div class="menu-card">
+          <img
+            src="img/menu/green tea.jpg"
+            alt="Espresso"
+            class="menu-card-img"
+          />
+          <h3 class="menu-card-tittle">- Green Tea</h3>
+          <p class="menu-card-rpice">IDR 17k</p>
+          <button type="submit" class="btn">
+            <a class="btn1" href="10.html">Pesan</a>
+          </button>
+        </div>
+        <div class="menu-card">
+          <img
+            src="img/menu/ice tea.jpg"
+            alt="Espresso"
+            class="menu-card-img"
+          />
+          <h3 class="menu-card-tittle">- Ice Tea</h3>
+          <p class="menu-card-rpice">IDR 10k</p>
+          <button type="submit" class="btn">
+            <a class="btn1" href="11.html">Pesan</a>
+          </button>
+        </div>
+        <div class="menu-card">
+          <img
+            src="img/menu/lemon tea.jpg"
+            alt="Espresso"
+            class="menu-card-img"
+          />
+          <h3 class="menu-card-tittle">- Lemon Tea</h3>
+          <p class="menu-card-rpice">IDR 10k</p>
+          <button type="submit" class="btn">
+            <a class="btn1" href="12.html">Pesan</a>
+          </button>
+        </div>
+        <div class="menu-card">
+          <img
+            src="img/menu/milkshakeberry.jpg"
+            alt="Espresso"
+            class="menu-card-img"
+          />
+          <h3 class="menu-card-tittle">- Milk Shake Berry</h3>
+          <p class="menu-card-rpice">IDR 15k</p>
+          <button type="submit" class="btn">
+            <a class="btn1" href="13.html">Pesan</a>
+          </button>
+        </div>
+        <div class="menu-card">
+          <img
+            src="img/menu/milkshakecoko.jpg"
+            alt="Espresso"
+            class="menu-card-img"
+          />
+          <h3 class="menu-card-tittle">- Milk Shake Choco</h3>
+          <p class="menu-card-rpice">IDR 15k</p>
+          <button type="submit" class="btn">
+            <a class="btn1" href="14.html">Pesan</a>
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Menu Section end -->
+
+    <!-- PHP end-->
+
+    <!-- Contact Section start -->
+    <section id="contact" class="contact">
+      <h2><span>Contact</span> Us</h2>
+      <p>
+        Jika anda mau memesan atau ada saran yang harus di koreksi dari makan
+        kami, kirim saja pesan anda, atau bisa datang saja ke restoran kami.
+      </p>
+      <div class="row">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d130297.32509534464!2d106.7094902088687!3d-6.595016205085216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69c5b7ad0f824b%3A0x4c71fd1b0b8ae76d!2sBogor%20City%2C%20West%20Java!5e1!3m2!1sen!2sid!4v1687239966211!5m2!1sen!2sid"
+          width="600"
+          height="450"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          class="map"
+        ></iframe>
+        <form action="">
+          <div class="input-group">
+            <i data-feather="user"></i>
+            <input type="text" placeholder="Nama" />
+          </div>
+
+          <div class="input-group">
+            <i data-feather="mail"></i>
+            <input type="text" placeholder="Email" />
+          </div>
+
+          <div class="input-group">
+            <i data-feather="phone"></i>
+            <input type="text" placeholder="No Hp" />
+          </div>
+
+          <button type="submit" class="btn">Kirim pesan</button>
+        </form>
+      </div>
+    </section>
+    <!-- Contact Section end -->
+
+    <!-- Footer start -->
+    <footer>
+      <div class="social1">
+        <p>Terimkasih sudah mengunjungi website kami</p>
+        <p>Semoga membuat anda puas</p>
+      </div>
+      <div class="social">
+        <a href="#"><i data-feather="instagram"></i></a>
+        <a href="#"><i data-feather="twitter"></i></a>
+        <a href="#"><i data-feather="facebook"></i></a>
+      </div>
+
+      <div class="links">
+        <a href="#home">Home</a>
+        <a href="#about">Tentang Kami</a>
+        <a href="#menu">Menu</a>
+        <a href="#contact">Kontak</a>
+      </div>
+
+      <div class="credit">
+        <p>Desained by <a href="#">FajarFauzian</a>. | &copy; 2023.</p>
+      </div>
+    </footer>
+    <!-- Footer end -->
+
+    <!-- Feather Icons -->
+    <script>
+      feather.replace();
+    </script>
+
+    <!-- My Javascript -->
+    <script src="js/script.js"></script>
+  </body>
+</html>
